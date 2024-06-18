@@ -22,3 +22,6 @@ Columns,Stack,List etc
 
 Atomic Widgets
 Text,TextField,Image,Icon etc
+
+Gestures:
+Tap and Ink gesture

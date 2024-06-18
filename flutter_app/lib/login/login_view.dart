@@ -9,10 +9,11 @@ class LoginView extends StatelessWidget {
         body: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             "Let's sign you in",
+            textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 30,
                 color: Colors.orange,
@@ -25,7 +26,7 @@ class LoginView extends StatelessWidget {
             style: TextStyle(
                 fontSize: 15,
                 color: Colors.grey,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
                 letterSpacing: 0.5),
           ),
           Container(
@@ -43,6 +44,8 @@ class LoginView extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
           ),
+          ElevatedButton(onPressed: () {}, child: Text("Sign in")),
+          TextButton(onPressed: () {}, child: Text("muzammilpeer.uk")),
         ],
       ),
     ));
