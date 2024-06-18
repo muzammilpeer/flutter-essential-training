@@ -23,15 +23,18 @@ class ChatView extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView(
-              children: [
-                ChatBubble(messageText: "It's your message"),
-                ChatBubble(
-                    bubbleAlignment: Alignment.centerRight,
-                    messageText: "It's my message"),
-              ],
-            ),
-          ),
+              child: ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return ChatBubble(
+                  bubbleAlignment: index.isEven
+                      ? Alignment.centerLeft
+                      : Alignment.centerRight,
+                  messageText: index.isEven
+                      ? "Your message goes here index $index"
+                      : "My message goes here index $index");
+            },
+          )),
           const ChatInput(),
         ],
       ),
