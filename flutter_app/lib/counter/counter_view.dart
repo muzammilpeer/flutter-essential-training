@@ -15,6 +15,18 @@ class _CounterViewState extends State<CounterView> {
   int counter = 0;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -33,9 +45,11 @@ class _CounterViewState extends State<CounterView> {
                   backgroundColor: widget.buttonColor,
                   onPressed: () {
                     print("Increment");
-                    setState(() {
-                      counter++;
-                    });
+                    if (mounted) {
+                      setState(() {
+                        counter++;
+                      });
+                    }
                   },
                   child: Icon(Icons.add),
                 ),
