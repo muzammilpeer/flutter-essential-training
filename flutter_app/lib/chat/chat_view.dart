@@ -21,9 +21,7 @@ class ChatView extends StatelessWidget {
           ]),
       body: Column(
         children: [
-          Flexible(
-            flex: 3,
-            fit: FlexFit.loose,
+          Expanded(
             child: ListView(
               children: [
                 Align(
@@ -89,30 +87,26 @@ class ChatView extends StatelessWidget {
               ],
             ),
           ),
-          Flexible(
-            flex: 1,
-            fit: FlexFit.tight,
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        print("Add attachment");
-                      },
-                      icon: Icon(Icons.add_a_photo)),
-                  Text("Type a message"),
-                  IconButton(
-                      onPressed: () {
-                        print("Send Message");
-                      },
-                      icon: Icon(Icons.send))
-                ],
-              ),
+          Container(
+            height: 50,
+            decoration: BoxDecoration(
+              color: Colors.black,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      print("Add attachment");
+                    },
+                    icon: Icon(Icons.add_a_photo)),
+                Text("Type a message"),
+                IconButton(
+                    onPressed: () {
+                      print("Send Message");
+                    },
+                    icon: Icon(Icons.send))
+              ],
             ),
           ),
         ],
