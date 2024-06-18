@@ -35,7 +35,7 @@ class ChatView extends StatelessWidget {
                       : "My message goes here index $index");
             },
           )),
-          const ChatInput(),
+          ChatInput()
         ],
       ),
     );
