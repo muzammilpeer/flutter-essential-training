@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'chat/chat_view.dart';
+import 'counter/counter_view.dart';
 import 'login/login_view.dart';
 
 void main() {
@@ -17,6 +18,8 @@ class ChatApp extends StatelessWidget {
           primarySwatch: Colors.red,
         ),
         title: "Chat App",
-        home: const ChatView());
+        home: CounterView(
+          buttonColor: Colors.yellow,
+        ));
   }
 }

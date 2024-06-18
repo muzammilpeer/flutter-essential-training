@@ -4,7 +4,9 @@ import '../widgets/chat_bubble.dart';
 import '../widgets/chat_input.dart';
 
 class ChatView extends StatelessWidget {
-  const ChatView({super.key});
+  ChatView({super.key});
+
+  String test_message = "Your message goes here";
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class ChatView extends StatelessWidget {
             IconButton(
                 onPressed: () {
                   print("Logout");
+                  test_message = "hahahaha";
                 },
                 icon: Icon(Icons.logout))
           ]),
@@ -32,7 +35,7 @@ class ChatView extends StatelessWidget {
                       : Alignment.centerRight,
                   messageText: index.isEven
                       ? "Your message goes here index $index"
-                      : "My message goes here index $index");
+                      : "$test_message $index");
             },
           )),
           ChatInput()
