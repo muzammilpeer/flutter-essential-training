@@ -11,7 +11,7 @@ class ChatView extends StatelessWidget {
   void logout(context) {
     print("Logout");
     test_message = "hahahaha";
-    Navigator.pop(context);
+    Navigator.pushReplacementNamed(context, "/");
   }
 
   @override

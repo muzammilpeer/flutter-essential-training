@@ -124,10 +124,8 @@ class LoginView extends StatelessWidget {
         _loginFormKey.currentState!.validate()) {
       print("Username = ${usernameController.text}");
       print("Password = ${passwordController.text}");
-
-      Navigator.pushNamed(context, "/chat", arguments: {
-        "username": usernameController.text,
-      });
+      Navigator.pushReplacementNamed(context, "/chat",
+          arguments: {"username": usernameController.text});
     }
   }
 }
