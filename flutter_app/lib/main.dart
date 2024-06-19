@@ -18,6 +18,6 @@ class ChatApp extends StatelessWidget {
           primarySwatch: Colors.red,
         ),
         title: "Chat App",
-        home: LoginView());
+        home: ChatView());
   }
 }
