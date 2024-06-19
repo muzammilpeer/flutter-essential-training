@@ -4,9 +4,17 @@ import '../widgets/chat_bubble.dart';
 import '../widgets/chat_input.dart';
 
 class ChatView extends StatelessWidget {
-  ChatView({super.key});
+  late String username;
+
+  ChatView({super.key, required this.username});
 
   String test_message = "Your message goes here";
+
+  void logout(context) {
+    print("Logout");
+    test_message = "hahahaha";
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +22,11 @@ class ChatView extends StatelessWidget {
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text("Hi Muzammil"),
+          title: Text("Hi $username!"),
           actions: [
             IconButton(
                 onPressed: () {
-                  print("Logout");
-                  test_message = "hahahaha";
+                  logout(context);
                 },
                 icon: Icon(Icons.logout))
           ]),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../chat/chat_view.dart';
+
 class LoginView extends StatelessWidget {
   LoginView({super.key});
 
@@ -8,11 +10,18 @@ class LoginView extends StatelessWidget {
 
   GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
 
-  void loginUser() {
+  void loginUser(context) {
     if (_loginFormKey.currentState != null &&
         _loginFormKey.currentState!.validate()) {
       print("Username = ${usernameController.text}");
       print("Password = ${passwordController.text}");
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ChatView(
+                    username: usernameController.text,
+                  )));
     }
   }
 
@@ -104,7 +113,7 @@ class LoginView extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () {
-                  loginUser();
+                  loginUser(context);
                 },
                 child: Text(
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
