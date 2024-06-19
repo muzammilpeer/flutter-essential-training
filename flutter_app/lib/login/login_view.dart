@@ -7,30 +7,7 @@ class LoginView extends StatelessWidget {
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-
-  GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
-
-  void loginUser(context) {
-    if (_loginFormKey.currentState != null &&
-        _loginFormKey.currentState!.validate()) {
-      print("Username = ${usernameController.text}");
-      print("Password = ${passwordController.text}");
-
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ChatView(
-                    username: usernameController.text,
-                  )));
-    }
-  }
-
-  String? validateField(String? value, String fieldName) {
-    if (value == null || value.isEmpty || value.length < 5) {
-      return "Please enter $fieldName with at least 5 characters.";
-    }
-    return null;
-  }
+  final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -134,5 +111,25 @@ class LoginView extends StatelessWidget {
       ),
     ));
   }
+
+  String? validateField(String? value, String fieldName) {
+    if (value == null || value.isEmpty || value.length < 5) {
+      return "Please enter $fieldName with at least 5 characters.";
+    }
+    return null;
+  }
+
+  void loginUser(context) {
+    if (_loginFormKey.currentState != null &&
+        _loginFormKey.currentState!.validate()) {
+      print("Username = ${usernameController.text}");
+      print("Password = ${passwordController.text}");
+
+      Navigator.pushNamed(context, "/chat", arguments: {
+        "username": usernameController.text,
+      });
+    }
+  }
 }
+
 //

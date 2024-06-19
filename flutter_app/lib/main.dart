@@ -22,6 +22,10 @@ class ChatApp extends StatelessWidget {
           ),
         ),
         title: "Chat App",
-        home: LoginView());
+        home: LoginView(),
+        routes: {
+          '/chat': (context) => ChatView(),
+          '/counter': (context) => CounterView(buttonColor: Colors.red),
+        });
   }
 }

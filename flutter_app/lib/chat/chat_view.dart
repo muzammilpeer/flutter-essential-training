@@ -4,9 +4,7 @@ import '../widgets/chat_bubble.dart';
 import '../widgets/chat_input.dart';
 
 class ChatView extends StatelessWidget {
-  late String username;
-
-  ChatView({super.key, required this.username});
+  ChatView({super.key});
 
   String test_message = "Your message goes here";
 
@@ -18,6 +16,10 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Map arguements = ModalRoute.of(context)!.settings.arguments as Map;
+    final String username =
+        arguements.containsKey("username") ? arguements["username"] : "";
+
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.transparent,
