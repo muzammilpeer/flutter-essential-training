@@ -6,9 +6,21 @@ class LoginView extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
+  GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
+
   void loginUser() {
-    print("Username = ${usernameController.text}");
-    print("Username = ${passwordController.text}");
+    if (_loginFormKey.currentState != null &&
+        _loginFormKey.currentState!.validate()) {
+      print("Username = ${usernameController.text}");
+      print("Password = ${passwordController.text}");
+    }
+  }
+
+  String? validateField(String? value, String fieldName) {
+    if (value == null || value.isEmpty || value.length < 5) {
+      return "Please enter $fieldName with at least 5 characters.";
+    }
+    return null;
   }
 
   @override
@@ -54,22 +66,41 @@ class LoginView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            TextField(
-              controller: usernameController,
-              decoration: InputDecoration(
-                hintText: "Username",
-                hintStyle: TextStyle(color: Colors.blueGrey),
-                border: OutlineInputBorder(),
+            Form(
+              key: _loginFormKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    validator: (value) {
+                      return validateField(value, "Username");
+                    },
+                    controller: usernameController,
+                    decoration: InputDecoration(
+                      hintText: "Username",
+                      hintStyle: TextStyle(color: Colors.blueGrey),
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    validator: (value) {
+                      return validateField(value, "Password");
+                    },
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: "Password",
+                      hintStyle: TextStyle(color: Colors.blueGrey),
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ],
               ),
             ),
-            TextField(
-              controller: passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: "Password",
-                hintStyle: TextStyle(color: Colors.blueGrey),
-                border: OutlineInputBorder(),
-              ),
+            SizedBox(
+              height: 20,
             ),
             ElevatedButton(
                 onPressed: () {
