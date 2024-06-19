@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/theme_colors.dart';
 
 import 'chat/chat_view.dart';
 import 'counter/counter_view.dart';
@@ -15,7 +16,7 @@ class ChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
+          primarySwatch: ThemeColors.primaryColor,
           appBarTheme: AppBarTheme(
             backgroundColor: Colors.blue,
             foregroundColor: Colors.black,

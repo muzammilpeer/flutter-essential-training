@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../chat/chat_view.dart';
+import '../utils/spacing_widget.dart';
+import '../widgets/login_textfield.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
@@ -56,38 +58,20 @@ class LoginView extends StatelessWidget {
               key: _loginFormKey,
               child: Column(
                 children: [
-                  TextFormField(
-                    validator: (value) {
-                      return validateField(value, "Username");
-                    },
+                  LoginFormTextField(
                     controller: usernameController,
-                    decoration: InputDecoration(
-                      hintText: "Username",
-                      hintStyle: TextStyle(color: Colors.blueGrey),
-                      border: OutlineInputBorder(),
-                    ),
+                    hintText: "Username",
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    validator: (value) {
-                      return validateField(value, "Password");
-                    },
+                  VerticalSpacing(20),
+                  LoginFormTextField(
                     controller: passwordController,
+                    hintText: "Password",
                     obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: "Password",
-                      hintStyle: TextStyle(color: Colors.blueGrey),
-                      border: OutlineInputBorder(),
-                    ),
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            VerticalSpacing(20),
             ElevatedButton(
                 onPressed: () {
                   loginUser(context);
@@ -110,13 +94,6 @@ class LoginView extends StatelessWidget {
         ),
       ),
     ));
-  }
-
-  String? validateField(String? value, String fieldName) {
-    if (value == null || value.isEmpty || value.length < 5) {
-      return "Please enter $fieldName with at least 5 characters.";
-    }
-    return null;
   }
 
   void loginUser(context) {

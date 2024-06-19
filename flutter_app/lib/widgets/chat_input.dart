@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/theme_colors.dart';
+
 class ChatInput extends StatelessWidget {
   ChatInput({super.key});
 
@@ -16,7 +18,7 @@ class ChatInput extends StatelessWidget {
     return Container(
       height: 50,
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: ThemeColors.chatInputColor,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
