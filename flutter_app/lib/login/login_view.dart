@@ -39,20 +39,9 @@ class LoginView extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   letterSpacing: 0.5),
             ),
-            Container(
-              width: 150,
+            Image.asset(
+              "assets/banner_image.png",
               height: 150,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                      "https://3009709.youcanlearnit.net/Alien_LIL_131338.png"),
-                  fit: BoxFit.fitHeight,
-                ),
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(8),
-              ),
             ),
             Form(
               key: _loginFormKey,
