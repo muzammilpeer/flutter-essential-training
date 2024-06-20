@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widgets/chat_bubble/chat_bubble_model.dart';
 
 import '../utils/theme_colors.dart';
 
 class ChatInput extends StatelessWidget {
-  ChatInput({super.key});
+  final Function(ChatBubbleModel) chatMessageCallback;
+
+  ChatInput({super.key, required this.chatMessageCallback});
 
   TextEditingController chatMessageController = TextEditingController();
 
-  void sendMessage() {
+  void sendMessage(context) {
     if (chatMessageController.text.isNotEmpty) {
+      ChatBubbleModel chatMessage = ChatBubbleModel(
+          text: chatMessageController.text,
+          id: "1",
+          author: Author(username: "peer123"),
+          createdAt: DateTime.now().millisecondsSinceEpoch);
       print("Message = ${chatMessageController.text}");
+      chatMessageCallback(chatMessage);
     }
   }
 
@@ -45,7 +54,7 @@ class ChatInput extends StatelessWidget {
           ),
           IconButton(
               onPressed: () {
-                sendMessage();
+                sendMessage(context);
               },
               icon: Icon(Icons.send))
         ],

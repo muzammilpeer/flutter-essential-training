@@ -17,7 +17,7 @@ class ChatBubbleModel {
     return ChatBubbleModel(
         id: json['id'],
         text: json['text'],
-        imageUrl: json['imageUrl'],
+        imageUrl: json['image'],
         createdAt: json['createdAt'],
         author: Author.fromJson(json['author']));
   }

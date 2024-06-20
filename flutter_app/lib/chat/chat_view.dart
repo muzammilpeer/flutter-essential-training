@@ -17,7 +17,7 @@ class ChatView extends StatefulWidget {
 class _ChatViewState extends State<ChatView> {
   late Author author;
 
-  late List<ChatBubbleModel> _chatMessages;
+  late List<ChatBubbleModel> _chatMessages = [];
 
   // check reference variable effect on stateless widget,
   String test_message = "Your message goes here";
@@ -32,6 +32,12 @@ class _ChatViewState extends State<ChatView> {
     }).toList();
     this.setState(() {
       _chatMessages = chatMessages;
+    });
+  }
+
+  void onMessageSentCallback(ChatBubbleModel chatMessage) {
+    this.setState(() {
+      _chatMessages.add(chatMessage);
     });
   }
 
@@ -72,7 +78,7 @@ class _ChatViewState extends State<ChatView> {
                   chatModel: chatModel);
             },
           )),
-          ChatInput()
+          ChatInput(chatMessageCallback: onMessageSentCallback)
         ],
       ),
     );
