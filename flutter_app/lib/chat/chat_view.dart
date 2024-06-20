@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widgets/chat_bubble/chat_bubble_model.dart';
 
-import '../widgets/chat_bubble.dart';
-import '../widgets/chat_input.dart';
+import '../widgets/chat_bubble/chat_bubble_widget.dart';
+import '../widgets/chat_input_widget.dart';
 
 class ChatView extends StatelessWidget {
   ChatView({super.key});
@@ -38,13 +39,19 @@ class ChatView extends StatelessWidget {
               child: ListView.builder(
             itemCount: 10,
             itemBuilder: (context, index) {
-              return ChatBubble(
+              ChatBubbleModel chatModel = ChatBubbleModel(
+                author: Author(username: "John Doe"),
+                id: "$index",
+                text: index.isEven
+                    ? "Your message goes here index $index"
+                    : "My message goes here index  $index",
+                createdAt: DateTime.now().microsecondsSinceEpoch,
+              );
+              return ChatBubbleWidget(
                   bubbleAlignment: index.isEven
                       ? Alignment.centerLeft
                       : Alignment.centerRight,
-                  messageText: index.isEven
-                      ? "Your message goes here index $index"
-                      : "$test_message $index");
+                  chatModel: chatModel);
             },
           )),
           ChatInput()

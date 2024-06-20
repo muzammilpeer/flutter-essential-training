@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ChatBubble extends StatelessWidget {
+import 'chat_bubble_model.dart';
+
+class ChatBubbleWidget extends StatelessWidget {
   final Alignment bubbleAlignment;
   final double cornerRadius;
-  final String messageText;
+  final ChatBubbleModel chatModel;
 
-  const ChatBubble(
+  const ChatBubbleWidget(
       {super.key,
       this.bubbleAlignment = Alignment.centerLeft,
       this.cornerRadius = 10,
-      required this.messageText});
+      required this.chatModel});
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +22,17 @@ class ChatBubble extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                messageText,
+                this.chatModel.text,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 10,
                     color: Colors.white),
               ),
-              Image(
-                  height: 150,
-                  width: 150,
-                  fit: BoxFit.fitHeight,
-                  image: NetworkImage(
-                      "https://3009709.youcanlearnit.net/Alien_LIL_131338.png")),
+              if (this.chatModel.imageUrl != null)
+                Image.network(
+                  "$this.chatModel.imageUrl",
+                  height: 200,
+                )
             ],
           ),
           padding: EdgeInsets.all(cornerRadius),

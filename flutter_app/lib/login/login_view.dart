@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../chat/chat_view.dart';
 import '../utils/spacing_widget.dart';
-import '../widgets/login_textfield.dart';
+import '../widgets/login_textfield_widget.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
