@@ -4,7 +4,6 @@ import 'package:social_media_buttons/social_media_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/spacing_widget.dart';
-import '../widgets/chat_bubble/chat_bubble_model.dart';
 import '../widgets/login_textfield_widget.dart';
 import 'auth_service.dart';
 
@@ -75,7 +74,7 @@ class LoginView extends StatelessWidget {
                 ),
                 VerticalSpacing(20),
                 ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       loginUser(context);
                     },
                     child: Text(
@@ -116,14 +115,13 @@ class LoginView extends StatelessWidget {
         ));
   }
 
-  void loginUser(BuildContext context) {
+  Future<void> loginUser(BuildContext context) async {
     if (_loginFormKey.currentState != null &&
         _loginFormKey.currentState!.validate()) {
       print("Username = ${usernameController.text}");
       print("Password = ${passwordController.text}");
 
-      Author author = Author(username: usernameController.text);
-      context.read<AuthService>().setAuthor(author);
+      await context.read<AuthService>().loginUser(usernameController.text);
       Navigator.pushReplacementNamed(context, "/chat");
     }
   }

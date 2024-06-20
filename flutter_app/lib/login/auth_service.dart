@@ -1,17 +1,28 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../widgets/chat_bubble/chat_bubble_model.dart';
 
 class AuthService {
-  Author _author = Author(username: "peer123");
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  Author _author = Author(username: "");
 
-  void loginUser() {}
+  Future<void> loginUser(String username) async {
+    try {
+      SharedPreferences preferences = await _prefs;
+      _author = Author(username: username);
+      preferences.setString("username", _author.username);
+    } catch (e) {
+      print("Storing value failed: $e");
+    }
+  }
 
-  void logout() {}
+  Future<void> logout() async {
+    SharedPreferences preferences = await _prefs;
+    _author = Author(username: "");
+    preferences.clear();
+  }
 
   Author getAuthor() {
     return _author;
-  }
-
-  void setAuthor(Author author) {
-    _author = author;
   }
 }
