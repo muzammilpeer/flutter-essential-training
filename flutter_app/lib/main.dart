@@ -32,8 +32,20 @@ class ChatApp extends StatelessWidget {
           ),
         ),
         title: "Chat App",
-        home: LoginView(),
+        home: FutureBuilder<bool>(
+          future: context.watch<AuthService>().isUserLoggedIn(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData && snapshot.data!) {
+                return ChatView();
+              } else
+                return LoginView();
+            }
+            return CircularProgressIndicator();
+          },
+        ),
         routes: {
+          '/login': (context) => LoginView(),
           '/chat': (context) => ChatView(),
           '/counter': (context) => CounterView(buttonColor: Colors.red),
         });

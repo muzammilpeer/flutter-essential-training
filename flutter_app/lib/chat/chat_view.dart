@@ -98,6 +98,6 @@ class _ChatViewState extends State<ChatView> {
     print("Logout");
     test_message = "hahahaha";
     context.read<AuthService>().logout();
-    Navigator.pushReplacementNamed(context, "/");
+    Navigator.pushReplacementNamed(context, "/login");
   }
 }

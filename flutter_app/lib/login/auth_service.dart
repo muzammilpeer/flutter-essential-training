@@ -26,6 +26,7 @@ class AuthService extends ChangeNotifier {
   }
 
   Author getAuthor() {
+    _author = Author(username: _prefs.getString("username") ?? "");
     return _author;
   }
 
@@ -33,5 +34,13 @@ class AuthService extends ChangeNotifier {
     _author = author;
     _prefs.setString("username", _author.username);
     notifyListeners();
+  }
+
+  Future<bool> isUserLoggedIn() async {
+    String? username = await _prefs.getString("username");
+    if (username != null) {
+      return true;
+    }
+    return false;
   }
 }
