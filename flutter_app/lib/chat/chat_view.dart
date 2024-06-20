@@ -51,7 +51,7 @@ class _ChatViewState extends State<ChatView> {
 
   @override
   Widget build(BuildContext context) {
-    author = context.read<AuthService>().getAuthor();
+    final author = context.watch<AuthService>().getAuthor();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -60,6 +60,13 @@ class _ChatViewState extends State<ChatView> {
           elevation: 0,
           title: Text("Hi ${author.username} !"),
           actions: [
+            IconButton(
+                onPressed: () {
+                  context
+                      .read<AuthService>()
+                      .updateAuthor(Author(username: "test"));
+                },
+                icon: Icon(Icons.logout)),
             IconButton(
                 onPressed: () {
                   logout(context);

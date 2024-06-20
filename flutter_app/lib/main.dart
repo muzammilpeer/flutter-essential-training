@@ -7,8 +7,10 @@ import 'chat/chat_view.dart';
 import 'counter/counter_view.dart';
 import 'login/login_view.dart';
 
-void main() {
-  runApp(Provider(
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AuthService.init();
+  runApp(ChangeNotifierProvider(
       create: (BuildContext context) {
         return AuthService();
       },
