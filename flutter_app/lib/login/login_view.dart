@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_buttons/social_media_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../chat/chat_view.dart';
 import '../utils/spacing_widget.dart';
@@ -69,8 +71,11 @@ class LoginView extends StatelessWidget {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
                     "Sign in")),
             GestureDetector(
-              onTap: () {
+              onTap: () async {
                 print("Find us tapped");
+                if (!await launch("https://muzammilpeer.uk")) {
+                  throw Exception('Could not launch ');
+                }
               },
               child: Column(
                 children: [
@@ -78,7 +83,21 @@ class LoginView extends StatelessWidget {
                   Text("https://muzammilpeer.uk"),
                 ],
               ),
-            )
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SocialMediaButton.twitter(
+                    size: 65,
+                    color: Colors.blue,
+                    url: "https://twitter.com/muzammilpeer"),
+                SocialMediaButton.github(
+                  url: "https://github.com/muzammilpeer",
+                  size: 65,
+                  color: Colors.blueGrey,
+                )
+              ],
+            ),
           ],
         ),
       ),

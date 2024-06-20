@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/theme_textfield.dart';
+import '../utils/theme_textfield_styles.dart';
 
 class LoginFormTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -35,7 +35,7 @@ class LoginFormTextField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: ThemeTextField.loginTextFieldStyle,
+        hintStyle: ThemeTextFieldStyle.loginTextFieldStyle,
         border: OutlineInputBorder(),
       ),
     );
