@@ -2,10 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/chat/attachment_image_model.dart';
 import 'package:flutter_app/widgets/chat_bubble/chat_bubble_model.dart';
 
 import '../widgets/chat_bubble/chat_bubble_widget.dart';
 import '../widgets/chat_input_widget.dart';
+
+import 'attachment_repository.dart';
 
 class ChatView extends StatefulWidget {
   ChatView({super.key});
@@ -36,7 +39,7 @@ class _ChatViewState extends State<ChatView> {
   }
 
   void onMessageSentCallback(ChatBubbleModel chatMessage) {
-    this.setState(() {
+    setState(() {
       _chatMessages.add(chatMessage);
     });
   }
@@ -52,6 +55,7 @@ class _ChatViewState extends State<ChatView> {
     author = ModalRoute.of(context)!.settings.arguments as Author;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -78,7 +82,7 @@ class _ChatViewState extends State<ChatView> {
                   chatModel: chatModel);
             },
           )),
-          ChatInput(chatMessageCallback: onMessageSentCallback)
+          ChatInput(onSubmitCallback: onMessageSentCallback)
         ],
       ),
     );

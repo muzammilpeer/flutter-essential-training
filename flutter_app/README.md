@@ -25,3 +25,8 @@ Text,TextField,Image,Icon etc
 
 Gestures:
 Tap and Ink gesture (its same like tap gesture, but when you click on any view it will show a ripple effect)
+
+To update partial model class for json serializer:
+Run in the package directory:
+dart run build_runner build 
+
