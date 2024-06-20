@@ -7,13 +7,19 @@ import 'package:flutter_app/widgets/chat_bubble/chat_bubble_model.dart';
 import '../widgets/chat_bubble/chat_bubble_widget.dart';
 import '../widgets/chat_input_widget.dart';
 
-class ChatView extends StatelessWidget {
+class ChatView extends StatefulWidget {
   ChatView({super.key});
 
+  @override
+  State<ChatView> createState() => _ChatViewState();
+}
+
+class _ChatViewState extends State<ChatView> {
   late Author author;
 
+  late List<ChatBubbleModel> _chatMessages;
+
   // check reference variable effect on stateless widget,
-  // (when view got rebuild) it will have changes
   String test_message = "Your message goes here";
 
   void loadJsonChatMessages() async {
@@ -24,39 +30,19 @@ class ChatView extends StatelessWidget {
     final List<ChatBubbleModel> chatMessages = decodedList.map((item) {
       return ChatBubbleModel.fromJson(item);
     }).toList();
-    print(chatMessages);
+    this.setState(() {
+      _chatMessages = chatMessages;
+    });
   }
 
-  List<ChatBubbleModel> getDataSource() {
-    return [
-      ChatBubbleModel(
-          text: "Your message goes here",
-          author: author,
-          createdAt: DateTime.now().microsecondsSinceEpoch,
-          id: '1'),
-      ChatBubbleModel(
-          text: "Your message goes here1",
-          author: author,
-          createdAt: DateTime.now().microsecondsSinceEpoch,
-          imageUrl: "https://picsum.photos/250?image=9",
-          id: '2'),
-      ChatBubbleModel(
-          text: "Your message goes here",
-          author: Author(username: "Peer Doe"),
-          createdAt: DateTime.now().microsecondsSinceEpoch,
-          id: '3'),
-    ];
-  }
-
-  void logout(context) {
-    print("Logout");
-    test_message = "hahahaha";
-    Navigator.pushReplacementNamed(context, "/");
+  @override
+  void initState() {
+    loadJsonChatMessages();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    loadJsonChatMessages();
     author = ModalRoute.of(context)!.settings.arguments as Author;
 
     return Scaffold(
@@ -75,9 +61,9 @@ class ChatView extends StatelessWidget {
         children: [
           Expanded(
               child: ListView.builder(
-            itemCount: getDataSource().length,
+            itemCount: _chatMessages.length,
             itemBuilder: (context, index) {
-              final chatModel = getDataSource()[index];
+              final chatModel = _chatMessages[index];
 
               return ChatBubbleWidget(
                   bubbleAlignment: chatModel.author.username == author.username
@@ -90,5 +76,11 @@ class ChatView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void logout(context) {
+    print("Logout");
+    test_message = "hahahaha";
+    Navigator.pushReplacementNamed(context, "/");
   }
 }
