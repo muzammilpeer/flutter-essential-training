@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/widgets/chat_bubble/chat_bubble_model.dart';
 
 import '../widgets/chat_bubble/chat_bubble_widget.dart';
@@ -12,6 +15,17 @@ class ChatView extends StatelessWidget {
   // check reference variable effect on stateless widget,
   // (when view got rebuild) it will have changes
   String test_message = "Your message goes here";
+
+  void loadJsonChatMessages() async {
+    // load json chat messages
+    final encodedJson =
+        await rootBundle.loadString("assets/mock_chat_messages.json");
+    final List<dynamic> decodedList = jsonDecode(encodedJson) as List;
+    final List<ChatBubbleModel> chatMessages = decodedList.map((item) {
+      return ChatBubbleModel.fromJson(item);
+    }).toList();
+    print(chatMessages);
+  }
 
   List<ChatBubbleModel> getDataSource() {
     return [
@@ -42,6 +56,7 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    loadJsonChatMessages();
     author = ModalRoute.of(context)!.settings.arguments as Author;
 
     return Scaffold(
