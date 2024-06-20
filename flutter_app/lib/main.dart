@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/theme_colors.dart';
+import 'package:flutter_app/widgets/chat_bubble/chat_bubble_model.dart';
 
 import 'chat/chat_view.dart';
 import 'counter/counter_view.dart';

@@ -7,7 +7,32 @@ import '../widgets/chat_input_widget.dart';
 class ChatView extends StatelessWidget {
   ChatView({super.key});
 
+  late Author author;
+
+  // check reference variable effect on stateless widget,
+  // (when view got rebuild) it will have changes
   String test_message = "Your message goes here";
+
+  List<ChatBubbleModel> getDataSource() {
+    return [
+      ChatBubbleModel(
+          text: "Your message goes here",
+          author: author,
+          createdAt: DateTime.now().microsecondsSinceEpoch,
+          id: '1'),
+      ChatBubbleModel(
+          text: "Your message goes here1",
+          author: author,
+          createdAt: DateTime.now().microsecondsSinceEpoch,
+          imageUrl: "https://picsum.photos/250?image=9",
+          id: '2'),
+      ChatBubbleModel(
+          text: "Your message goes here",
+          author: Author(username: "Peer Doe"),
+          createdAt: DateTime.now().microsecondsSinceEpoch,
+          id: '3'),
+    ];
+  }
 
   void logout(context) {
     print("Logout");
@@ -17,15 +42,13 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map arguements = ModalRoute.of(context)!.settings.arguments as Map;
-    final String username =
-        arguements.containsKey("username") ? arguements["username"] : "";
+    author = ModalRoute.of(context)!.settings.arguments as Author;
 
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text("Hi $username!"),
+          title: Text("Hi ${author.username} !"),
           actions: [
             IconButton(
                 onPressed: () {
@@ -37,20 +60,14 @@ class ChatView extends StatelessWidget {
         children: [
           Expanded(
               child: ListView.builder(
-            itemCount: 10,
+            itemCount: getDataSource().length,
             itemBuilder: (context, index) {
-              ChatBubbleModel chatModel = ChatBubbleModel(
-                author: Author(username: "John Doe"),
-                id: "$index",
-                text: index.isEven
-                    ? "Your message goes here index $index"
-                    : "My message goes here index  $index",
-                createdAt: DateTime.now().microsecondsSinceEpoch,
-              );
+              final chatModel = getDataSource()[index];
+
               return ChatBubbleWidget(
-                  bubbleAlignment: index.isEven
-                      ? Alignment.centerLeft
-                      : Alignment.centerRight,
+                  bubbleAlignment: chatModel.author.username == author.username
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   chatModel: chatModel);
             },
           )),

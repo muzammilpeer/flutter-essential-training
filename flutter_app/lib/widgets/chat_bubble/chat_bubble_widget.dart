@@ -30,7 +30,7 @@ class ChatBubbleWidget extends StatelessWidget {
               ),
               if (this.chatModel.imageUrl != null)
                 Image.network(
-                  "$this.chatModel.imageUrl",
+                  this.chatModel.imageUrl!,
                   height: 200,
                 )
             ],

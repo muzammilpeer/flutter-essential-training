@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../chat/chat_view.dart';
 import '../utils/spacing_widget.dart';
+import '../widgets/chat_bubble/chat_bubble_model.dart';
 import '../widgets/login_textfield_widget.dart';
 
 class LoginView extends StatelessWidget {
@@ -109,8 +110,9 @@ class LoginView extends StatelessWidget {
         _loginFormKey.currentState!.validate()) {
       print("Username = ${usernameController.text}");
       print("Password = ${passwordController.text}");
-      Navigator.pushReplacementNamed(context, "/chat",
-          arguments: {"username": usernameController.text});
+
+      Author author = Author(username: usernameController.text);
+      Navigator.pushReplacementNamed(context, "/chat", arguments: author);
     }
   }
 }
