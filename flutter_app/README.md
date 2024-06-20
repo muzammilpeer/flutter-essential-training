@@ -30,3 +30,12 @@ To update partial model class for json serializer:
 Run in the package directory:
 dart run build_runner build 
 
+Mobile UI Version
+buildHeader()
+buildForm()
+buildFooter()
+
+
+Web UI Version
+buildHeader()               buildForm()
+buildFooter()
