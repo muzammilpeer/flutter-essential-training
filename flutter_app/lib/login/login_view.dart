@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:social_media_buttons/social_media_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../chat/chat_view.dart';
 import '../utils/spacing_widget.dart';
 import '../widgets/chat_bubble/chat_bubble_model.dart';
 import '../widgets/login_textfield_widget.dart';
+import 'auth_service.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
@@ -115,14 +116,15 @@ class LoginView extends StatelessWidget {
         ));
   }
 
-  void loginUser(context) {
+  void loginUser(BuildContext context) {
     if (_loginFormKey.currentState != null &&
         _loginFormKey.currentState!.validate()) {
       print("Username = ${usernameController.text}");
       print("Password = ${passwordController.text}");
 
       Author author = Author(username: usernameController.text);
-      Navigator.pushReplacementNamed(context, "/chat", arguments: author);
+      context.read<AuthService>().setAuthor(author);
+      Navigator.pushReplacementNamed(context, "/chat");
     }
   }
 }

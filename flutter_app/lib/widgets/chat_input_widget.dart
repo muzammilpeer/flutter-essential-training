@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/login/auth_service.dart';
 import 'package:flutter_app/widgets/chat_bubble/chat_bubble_model.dart';
 
 import '../utils/theme_colors.dart';
 import 'network_gallery_widget.dart';
+import 'package:provider/provider.dart';
 
 class ChatInput extends StatefulWidget {
   final Function(ChatBubbleModel) onSubmitCallback;
@@ -25,12 +27,12 @@ class _ChatInputState extends State<ChatInput> {
     Navigator.of(context).pop();
   }
 
-  void sendMessage(context) {
+  void sendMessage(BuildContext context) {
     if (chatMessageController.text.isNotEmpty) {
       ChatBubbleModel chatMessage = ChatBubbleModel(
           text: chatMessageController.text,
           id: "1",
-          author: Author(username: "peer123"),
+          author: context.read<AuthService>().getAuthor(),
           createdAt: DateTime.now().millisecondsSinceEpoch);
       print("Message = ${chatMessageController.text}");
       if (_selectedAttachmentImageUrl.isNotEmpty) {

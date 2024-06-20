@@ -2,13 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/chat/attachment_image_model.dart';
 import 'package:flutter_app/widgets/chat_bubble/chat_bubble_model.dart';
+import 'package:provider/provider.dart';
 
+import '../login/auth_service.dart';
 import '../widgets/chat_bubble/chat_bubble_widget.dart';
 import '../widgets/chat_input_widget.dart';
-
-import 'attachment_repository.dart';
 
 class ChatView extends StatefulWidget {
   ChatView({super.key});
@@ -52,7 +51,7 @@ class _ChatViewState extends State<ChatView> {
 
   @override
   Widget build(BuildContext context) {
-    author = ModalRoute.of(context)!.settings.arguments as Author;
+    author = context.read<AuthService>().getAuthor();
 
     return Scaffold(
       backgroundColor: Colors.white,
