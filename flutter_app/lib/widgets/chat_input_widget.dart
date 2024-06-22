@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class ChatInput extends StatefulWidget {
   final Function(ChatBubbleModel) onSubmitCallback;
 
-  ChatInput({super.key, required this.onSubmitCallback});
+  const ChatInput({super.key, required this.onSubmitCallback});
 
   @override
   State<ChatInput> createState() => _ChatInputState();
@@ -50,7 +50,7 @@ class _ChatInputState extends State<ChatInput> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: ThemeColors.chatInputColor,
       ),
       child: Row(
@@ -66,7 +66,7 @@ class _ChatInputState extends State<ChatInput> {
                           attachmentImageCallback: onImagePicked);
                     });
               },
-              icon: Icon(Icons.add_a_photo)),
+              icon: const Icon(Icons.add_a_photo)),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,8 +77,8 @@ class _ChatInputState extends State<ChatInput> {
                   minLines: 1,
                   textCapitalization: TextCapitalization.sentences,
                   controller: chatMessageController,
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
+                  style: const TextStyle(color: Colors.black),
+                  decoration: const InputDecoration(
                     hintStyle: TextStyle(color: Colors.blueGrey),
                     border: InputBorder.none,
                     hintText: "Type your message",
@@ -96,7 +96,7 @@ class _ChatInputState extends State<ChatInput> {
               onPressed: () {
                 sendMessage(context);
               },
-              icon: Icon(Icons.send))
+              icon: const Icon(Icons.send))
         ],
       ),
     );

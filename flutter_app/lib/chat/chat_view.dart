@@ -10,7 +10,7 @@ import '../widgets/chat_bubble/chat_bubble_widget.dart';
 import '../widgets/chat_input_widget.dart';
 
 class ChatView extends StatefulWidget {
-  ChatView({super.key});
+  const ChatView({super.key});
 
   @override
   State<ChatView> createState() => _ChatViewState();
@@ -32,7 +32,7 @@ class _ChatViewState extends State<ChatView> {
     final List<ChatBubbleModel> chatMessages = decodedList.map((item) {
       return ChatBubbleModel.fromJson(item);
     }).toList();
-    this.setState(() {
+    setState(() {
       _chatMessages = chatMessages;
     });
   }
@@ -66,12 +66,12 @@ class _ChatViewState extends State<ChatView> {
                       .read<AuthService>()
                       .updateAuthor(Author(username: "test"));
                 },
-                icon: Icon(Icons.logout)),
+                icon: const Icon(Icons.logout)),
             IconButton(
                 onPressed: () {
                   logout(context);
                 },
-                icon: Icon(Icons.logout))
+                icon: const Icon(Icons.logout))
           ]),
       body: Column(
         children: [

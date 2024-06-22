@@ -8,7 +8,7 @@ class LoginFormTextField extends StatelessWidget {
   final bool obscureText;
   final FormFieldValidator<String>? validator;
 
-  LoginFormTextField(
+  const LoginFormTextField(
       {super.key,
       required this.controller,
       required this.hintText,
@@ -36,7 +36,7 @@ class LoginFormTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: ThemeTextFieldStyle.loginTextFieldStyle,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
     );
   }

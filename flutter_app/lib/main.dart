@@ -14,19 +14,21 @@ void main() async {
       create: (BuildContext context) {
         return AuthService();
       },
-      child: ChatApp()));
+      child: const ChatApp()));
 }
 // TODO CREATE CHAT APP
 // TODO CREATE LOGIN SCREEN
 
 class ChatApp extends StatelessWidget {
+  const ChatApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
           primarySwatch: ThemeColors.primaryColor,
           canvasColor: ThemeColors.canvasColor,
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             backgroundColor: Colors.blue,
             foregroundColor: Colors.black,
           ),
@@ -37,16 +39,17 @@ class ChatApp extends StatelessWidget {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasData && snapshot.data!) {
-                return ChatView();
-              } else
+                return const ChatView();
+              } else {
                 return LoginView();
+              }
             }
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           },
         ),
         routes: {
           '/login': (context) => LoginView(),
-          '/chat': (context) => ChatView(),
+          '/chat': (context) => const ChatView(),
           '/counter': (context) => CounterView(buttonColor: Colors.red),
         });
   }

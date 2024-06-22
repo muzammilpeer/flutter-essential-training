@@ -17,7 +17,7 @@ class LoginView extends StatelessWidget {
   Widget _buildHeader(context) {
     return Column(
       children: [
-        Text(
+        const Text(
           "Let's sign you in",
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -26,7 +26,7 @@ class LoginView extends StatelessWidget {
               fontWeight: FontWeight.bold,
               letterSpacing: 0.5),
         ),
-        Text(
+        const Text(
           "Welcome back!\n you are missed!",
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -39,7 +39,7 @@ class LoginView extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width,
           height: 200,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fitWidth,
                 image: AssetImage("assets/banner_image.png")),
@@ -78,7 +78,7 @@ class LoginView extends StatelessWidget {
               onPressed: () async {
                 loginUser(context);
               },
-              child: Text(
+              child: const Text(
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
                   "Sign in")),
         ]);
@@ -94,14 +94,14 @@ class LoginView extends StatelessWidget {
               throw Exception('Could not launch ');
             }
           },
-          child: Column(
+          child: const Column(
             children: [
               Text("Find us"),
               Text("https://muzammilpeer.uk"),
             ],
           ),
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SocialMediaButton.twitter(
@@ -128,10 +128,10 @@ class LoginView extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
-              if (constraints.maxWidth > 1000)
+              if (constraints.maxWidth > 1000) {
                 // web layout
                 return Row(children: [
-                  Spacer(
+                  const Spacer(
                     flex: 2,
                   ),
                   Expanded(
@@ -142,15 +142,15 @@ class LoginView extends StatelessWidget {
                       _buildFooter(context)
                     ]),
                   ),
-                  Spacer(
+                  const Spacer(
                     flex: 1,
                   ),
                   Expanded(child: _buildForm(context)),
-                  Spacer(
+                  const Spacer(
                     flex: 2,
                   ),
                 ]);
-              else
+              } else {
                 // mobile layout
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -161,6 +161,7 @@ class LoginView extends StatelessWidget {
                     _buildFooter(context)
                   ],
                 );
+              }
             }),
           ),
         ));

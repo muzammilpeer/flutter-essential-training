@@ -21,30 +21,6 @@ class ChatBubbleWidget extends StatelessWidget {
       child: Container(
           constraints:
               BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.5),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                this.chatModel.text,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 10,
-                    color: Colors.white),
-              ),
-              if (this.chatModel.imageUrl != null)
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.fitHeight,
-                        image: NetworkImage(chatModel.imageUrl!)),
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(cornerRadius)),
-                  ),
-                )
-            ],
-          ),
           padding: EdgeInsets.all(cornerRadius),
           margin: EdgeInsets.all(cornerRadius),
           decoration: BoxDecoration(
@@ -60,6 +36,30 @@ class ChatBubbleWidget extends StatelessWidget {
             color: bubbleAlignment == Alignment.centerLeft
                 ? ThemeColors.chatBubbleColor
                 : ThemeColors.chatBubbleAuthorColor,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                chatModel.text,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 10,
+                    color: Colors.white),
+              ),
+              if (chatModel.imageUrl != null)
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.fitHeight,
+                        image: NetworkImage(chatModel.imageUrl!)),
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(cornerRadius)),
+                  ),
+                )
+            ],
           )),
     );
   }

@@ -26,8 +26,8 @@ class NetworkGalleryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.all(12),
+      decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(8),
@@ -40,7 +40,7 @@ class NetworkGalleryWidget extends StatelessWidget {
               AsyncSnapshot<List<PixelAttachmentImageModel>> snapshot) {
             if (snapshot.hasData) {
               return GridView.builder(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
@@ -61,8 +61,8 @@ class NetworkGalleryWidget extends StatelessWidget {
                 child: Text("Error: ${snapshot.error}"),
               );
             }
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
+            return const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Center(child: CircularProgressIndicator()),
             );
           }),

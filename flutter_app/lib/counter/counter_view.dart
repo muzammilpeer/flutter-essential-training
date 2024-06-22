@@ -30,13 +30,13 @@ class _CounterViewState extends State<CounterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Counter App"),
+        title: const Text("Counter App"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Counter Value"),
+            const Text("Counter Value"),
             Text("$counter"),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -51,7 +51,7 @@ class _CounterViewState extends State<CounterView> {
                       });
                     }
                   },
-                  child: Icon(Icons.add),
+                  child: const Icon(Icons.add),
                 ),
               ],
             )
