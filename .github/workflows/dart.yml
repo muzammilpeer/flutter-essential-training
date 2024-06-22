@@ -38,7 +38,7 @@ jobs:
       - name: Analyze project source
         run: |
           cd flutter_app
-          dart analyze
+          flutter analyze
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
@@ -46,4 +46,4 @@ jobs:
       - name: Run tests
         run: |
           cd flutter_app
-          dart test
+          flutter test
