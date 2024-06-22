@@ -22,7 +22,7 @@ class _ChatViewState extends State<ChatView> {
   late List<ChatBubbleModel> _chatMessages = [];
 
   // check reference variable effect on stateless widget,
-  String test_message = "Your message goes here";
+  String testMessage = "Your message goes here";
 
   void loadJsonChatMessages() async {
     // load json chat messages
@@ -95,8 +95,7 @@ class _ChatViewState extends State<ChatView> {
   }
 
   void logout(BuildContext context) {
-    print("Logout");
-    test_message = "hahahaha";
+    testMessage = "hahahaha";
     context.read<AuthService>().logout();
     Navigator.pushReplacementNamed(context, "/login");
   }

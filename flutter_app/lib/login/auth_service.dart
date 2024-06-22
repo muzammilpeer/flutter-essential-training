@@ -16,7 +16,7 @@ class AuthService extends ChangeNotifier {
       _author = Author(username: username);
       _prefs.setString("username", _author.username);
     } catch (e) {
-      print("Storing value failed: $e");
+      // handle error
     }
   }
 

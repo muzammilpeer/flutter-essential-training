@@ -34,7 +34,7 @@ class _ChatInputState extends State<ChatInput> {
           id: "1",
           author: context.read<AuthService>().getAuthor(),
           createdAt: DateTime.now().millisecondsSinceEpoch);
-      print("Message = ${chatMessageController.text}");
+
       if (_selectedAttachmentImageUrl.isNotEmpty) {
         chatMessage.imageUrl = _selectedAttachmentImageUrl;
       }
@@ -58,7 +58,6 @@ class _ChatInputState extends State<ChatInput> {
         children: [
           IconButton(
               onPressed: () {
-                print("Add attachment");
                 showModalBottomSheet(
                     context: context,
                     builder: (BuildContext context) {

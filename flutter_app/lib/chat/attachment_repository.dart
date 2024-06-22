@@ -12,7 +12,6 @@ class AttachmentRepository {
       var endpoint = Uri.parse("https://picsum.photos/v2/list");
       final response = await http.get(endpoint);
       if (response.statusCode == 200) {
-        print("Response = ${response.body}");
         final List<dynamic> decodedList = jsonDecode(response.body) as List;
         final List<PixelAttachmentImageModel> attachmentImages =
             decodedList.map((item) {

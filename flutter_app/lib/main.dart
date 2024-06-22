@@ -50,7 +50,7 @@ class ChatApp extends StatelessWidget {
         routes: {
           '/login': (context) => LoginView(),
           '/chat': (context) => const ChatView(),
-          '/counter': (context) => CounterView(buttonColor: Colors.red),
+          '/counter': (context) => const CounterView(buttonColor: Colors.red),
         });
   }
 }

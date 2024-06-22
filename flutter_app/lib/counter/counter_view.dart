@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class CounterView extends StatefulWidget {
   // widget variable
-  Color buttonColor = Colors.red;
+  final Color buttonColor;
 
-  CounterView({super.key, required this.buttonColor});
+  const CounterView({super.key, required this.buttonColor});
 
   @override
   State<CounterView> createState() => _CounterViewState();
@@ -44,7 +44,6 @@ class _CounterViewState extends State<CounterView> {
                 FloatingActionButton(
                   backgroundColor: widget.buttonColor,
                   onPressed: () {
-                    print("Increment");
                     if (mounted) {
                       setState(() {
                         counter++;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:social_media_buttons/social_media_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -89,8 +88,7 @@ class LoginView extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () async {
-            print("Find us tapped");
-            if (!await launch("https://muzammilpeer.uk")) {
+            if (!await launchUrl(Uri(path: "https://muzammilpeer.uk"))) {
               throw Exception('Could not launch ');
             }
           },
@@ -167,15 +165,16 @@ class LoginView extends StatelessWidget {
         ));
   }
 
-  Future<void> loginUser(BuildContext context) async {
+  Future<void> loginUser(context) async {
     if (_loginFormKey.currentState != null &&
         _loginFormKey.currentState!.validate()) {
-      print("Username = ${usernameController.text}");
-      print("Password = ${passwordController.text}");
-
       await context.read<AuthService>().loginUser(usernameController.text);
-      Navigator.pushReplacementNamed(context, "/chat");
+      navigateToChatScreen(context);
     }
+  }
+
+  void navigateToChatScreen(BuildContext context) {
+    Navigator.pushReplacementNamed(context, "/chat");
   }
 }
 
