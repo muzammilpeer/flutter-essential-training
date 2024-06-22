@@ -10,11 +10,19 @@ import 'login/login_view.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AuthService.init();
-  runApp(ChangeNotifierProvider(
-      create: (BuildContext context) {
-        return AuthService();
-      },
-      child: const ChatApp()));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthService>(create: (_) => AuthService()),
+      ],
+      child: const ChatApp(),
+    ),
+  );
+  // runApp(ChangeNotifierProvider(
+  //     create: (BuildContext context) {
+  //       return AuthService();
+  //     },
+  //     child: const ChatApp()));
 }
 // TODO CREATE CHAT APP
 // TODO CREATE LOGIN SCREEN
