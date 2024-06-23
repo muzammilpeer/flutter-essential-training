@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../utils/spacing_widget.dart';
 import '../widgets/login_textfield_widget.dart';
 import 'auth_service.dart';
+import 'package:provider/provider.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
@@ -83,12 +84,13 @@ class LoginView extends StatelessWidget {
         ]);
   }
 
-  Widget _buildFooter(context) {
+  Widget _buildFooter(BuildContext context) {
     return Column(
       children: [
         GestureDetector(
           onTap: () async {
-            if (!await launchUrl(Uri(path: "https://muzammilpeer.uk"))) {
+            if (!await launchUrl(Uri(path: "https://muzammilpeer.uk"),
+                mode: LaunchMode.externalApplication)) {
               throw Exception('Could not launch ');
             }
           },
@@ -165,7 +167,7 @@ class LoginView extends StatelessWidget {
         ));
   }
 
-  Future<void> loginUser(context) async {
+  Future<void> loginUser(BuildContext context) async {
     if (_loginFormKey.currentState != null &&
         _loginFormKey.currentState!.validate()) {
       await context.read<AuthService>().loginUser(usernameController.text);
